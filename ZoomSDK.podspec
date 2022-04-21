@@ -12,8 +12,8 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://github.com/qbao249/ZoomSDKDev', :tag => "v#{s.version}" }
   s.requires_arc = true
   s.static_framework = true
-  s.vendored_frameworks =  "**/lib/MobileRTC.xcframework", "**/lib/MobileRTCScreenShare.xcframework"
-  s.resource = '**/lib/MobileRTCResources.bundle'
+  s.vendored_frameworks =  "MobileRTC.xcframework", "MobileRTCScreenShare.xcframework"
+  s.resource = 'MobileRTCResources.bundle'
 
   s.libraries = "sqlite3", "z.1.2.5", "c++"
   s.weak_framework = 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'CoreGraphics', 'ReplayKit'
