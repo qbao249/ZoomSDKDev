@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author       = { "author" => "zvsx001@gmail.com" }
   s.platform     = :ios, "9.0"
 
-  s.source = { :git => 'https://github.com/qbao249/ZoomSDKDev.git', :tag => "v#{s.version}" }
+  s.source = { :http => 'https://github.com/qbao249/ZoomSDKDev/releases/download/v5.10.1.3038/zoom-sdk-ios-5.10.1.3038.zip' }
   s.requires_arc = true
 
   s.vendored_frameworks =  "**/lib/MobileRTC.xcframework", "**/lib/MobileRTCScreenShare.xcframework"
