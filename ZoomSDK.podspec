@@ -26,8 +26,8 @@ Pod::Spec.new do |spec|
   # spec.default_subspec = 'Core'
   spec.requires_arc = true
 
-  spec.vendored_frameworks =  "sdk/lib/MobileRTC.xcframework", "sdk/lib/MobileRTCScreenShare.xcframework"
-  spec.resource = 'sdk/lib/MobileRTCResources.bundle'
+  spec.vendored_frameworks =  "**/sdk/lib/MobileRTC.xcframework", "**/sdk/lib/MobileRTCScreenShare.xcframework"
+  spec.resource = '**/sdk/lib/MobileRTCResources.bundle'
 
   spec.libraries = "sqlite3", "z.1.2.5", "c++"
   spec.weak_framework = 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'CoreGraphics', 'ReplayKit'
