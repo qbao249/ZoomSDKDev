@@ -12,7 +12,8 @@ Pod::Spec.new do |spec|
   spec.summary      = "Original framework for Zoom.us iOS SDK for ARM. Not for simulator"
   spec.homepage     = "https://github.com/zoom/zoom-sdk-ios"
   spec.license      = "MIT"
-  spec.author             = { "Auth" => "auth@gmail.com" }
+  spec.author       = { "Auth" => "auth@gmail.com" }
+  spec.platform     = :ios, '9.0'
 
   spec.swift_version              = "5.0"
   spec.ios.deployment_target      = "10.0"
@@ -22,16 +23,25 @@ Pod::Spec.new do |spec|
   # spec.libraries = "z", "c++", "sqlite3"
   # spec.frameworks = "Foundation", "UIKit", "VideoToolbox", "CoreBluetooth", "ReplayKit", "CoreMotion"
 
-  spec.default_subspec = 'Core'
+  # spec.default_subspec = 'Core'
   spec.requires_arc = true
 
-  spec.subspec 'Core' do |subspec|
-    subspec.ios.source_files           = "MobileRTC.framework/Headers/**/*.{h,m}"
-    subspec.ios.public_header_files    = "MobileRTC.framework/Headers/**/*.{h,m}"
-    subspec.ios.vendored_frameworks    = "MobileRTC.framework"
+  s.vendored_frameworks =  "sdk/lib/MobileRTC.xcframework", "sdk/lib/MobileRTCScreenShare.xcframework"
+  s.resource = 'sdk/lib/MobileRTCResources.bundle'
 
-    subspec.ios.resource = "MobileRTCResources.bundle"
-  end
+  s.libraries = "sqlite3", "z.1.2.5", "c++"
+  s.weak_framework = 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'CoreGraphics', 'ReplayKit'
+
+  s.pod_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
+  # spec.subspec 'Core' do |subspec|
+  #   subspec.ios.source_files           = "MobileRTC.framework/Headers/**/*.{h,m}"
+  #   subspec.ios.public_header_files    = "MobileRTC.framework/Headers/**/*.{h,m}"
+  #   subspec.ios.vendored_frameworks    = "MobileRTC.framework"
+
+  #   subspec.ios.resource = "MobileRTCResources.bundle"
+  # end
 
   # Uncomment when this library will be support Swift 5 or higher
   # spec.subspec 'ShareScreen' do |subspec|
