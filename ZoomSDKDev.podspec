@@ -6,11 +6,11 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   Pod for zoom-sdk-ios.
                    DESC
-  s.homepage     = "https://github.com/qbao249/zoom-us-dev"
+  s.homepage     = "https://github.com/qbao249/ZoomSDKDev"
   s.author       = { "author" => "qbao249@gmail.com" }
   s.platform     = :ios, "9.0"
 
-  s.source = { :http => 'https://github.com/qbao249/zoom-us-dev/releases/download/5.10.1.3038/zoom-sdk-ios-5.10.1.3038.zip' }
+  s.source = { :http => 'https://github.com/qbao249/ZoomSDKDev/releases/download/v5.10.1.3038/zoom-sdk-ios-5.10.1.3038.zip' }
 #   s.source_files  = "lib/**/*.{h,m}"
   s.requires_arc = true
 
