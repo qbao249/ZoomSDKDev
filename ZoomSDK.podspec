@@ -23,11 +23,10 @@ Pod::Spec.new do |spec|
   # spec.libraries = "z", "c++", "sqlite3"
   # spec.frameworks = "Foundation", "UIKit", "VideoToolbox", "CoreBluetooth", "ReplayKit", "CoreMotion"
 
-  # spec.default_subspec = 'Core'
   spec.requires_arc = true
 
-  spec.vendored_frameworks =  "**/sdk/lib/MobileRTC.xcframework", "**/sdk/lib/MobileRTCScreenShare.xcframework"
-  spec.resource = '**/sdk/lib/MobileRTCResources.bundle'
+  # spec.vendored_frameworks =  "sdk/lib/MobileRTC.xcframework", "sdk/lib/MobileRTCScreenShare.xcframework"
+  # spec.resource = '**/sdk/lib/MobileRTCResources.bundle'
 
   spec.libraries = "sqlite3", "z.1.2.5", "c++"
   spec.weak_framework = 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'CoreGraphics', 'ReplayKit'
@@ -35,11 +34,20 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }
+
+  spec.default_subspec = 'Core'
+
+  spec.subspec 'Core' do |subspec|
+    # subspec.ios.source_files           = "MobileRTC.framework/Headers/**/*.{h,m}"
+    # subspec.ios.public_header_files    = "MobileRTC.framework/Headers/**/*.{h,m}"
+    subspec.ios.vendored_frameworks    = "sdk/lib/MobileRTC.xcframework", "sdk/lib/MobileRTCScreenShare.xcframework"
+    subspec.ios.resource = "sdk/lib/MobileRTCResources.bundle"
+  end
+
   # spec.subspec 'Core' do |subspec|
   #   subspec.ios.source_files           = "MobileRTC.framework/Headers/**/*.{h,m}"
   #   subspec.ios.public_header_files    = "MobileRTC.framework/Headers/**/*.{h,m}"
   #   subspec.ios.vendored_frameworks    = "MobileRTC.framework"
-
   #   subspec.ios.resource = "MobileRTCResources.bundle"
   # end
 
