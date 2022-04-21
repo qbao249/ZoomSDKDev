@@ -26,13 +26,13 @@ Pod::Spec.new do |spec|
   # spec.default_subspec = 'Core'
   spec.requires_arc = true
 
-  s.vendored_frameworks =  "sdk/lib/MobileRTC.xcframework", "sdk/lib/MobileRTCScreenShare.xcframework"
-  s.resource = 'sdk/lib/MobileRTCResources.bundle'
+  spec.vendored_frameworks =  "sdk/lib/MobileRTC.xcframework", "sdk/lib/MobileRTCScreenShare.xcframework"
+  spec.resource = 'sdk/lib/MobileRTCResources.bundle'
 
-  s.libraries = "sqlite3", "z.1.2.5", "c++"
-  s.weak_framework = 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'CoreGraphics', 'ReplayKit'
+  spec.libraries = "sqlite3", "z.1.2.5", "c++"
+  spec.weak_framework = 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'CoreGraphics', 'ReplayKit'
 
-  s.pod_target_xcconfig = {
+  spec.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }
   # spec.subspec 'Core' do |subspec|
