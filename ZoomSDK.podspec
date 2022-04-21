@@ -1,68 +1,46 @@
-#
-#  Be sure to run `pod spec lint ZoomSDK.podspec' to ensure this is a
-#  valid spec and to remove all comments including this before submitting the spec.
-#
-#  To learn more about Podspec attributes see https://docs.cocoapods.org/specification.html
-#  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
-#
+Pod::Spec.new do |s|
+  s.name         = "ZoomSDK"
+  s.version      = "5.10.1.3038"
+  s.summary      = "Pod for zoom-sdk-ios"
+  s.description  = <<-DESC
+                  Pod for zoom-sdk-ios.
+                   DESC
+  s.homepage     = "https://github.com/zoom-us-community/zoom-sdk-pods"
+  s.author       = { "author" => "zvsx001@gmail.com" }
+  s.platform     = :ios, "9.0"
 
-Pod::Spec.new do |spec|
-  spec.name         = "ZoomSDK"
-  spec.version      = "5.10.1.3038"
-  spec.summary      = "Original framework for Zoom.us iOS SDK for ARM. Not for simulator"
-  spec.homepage     = "https://github.com/zoom/zoom-sdk-ios"
-  spec.license      = "MIT"
-  spec.author       = { "Auth" => "auth@gmail.com" }
-  spec.platform     = :ios, '9.0'
+  s.source = { :git => 'https://github.com/qbao249/ZoomSDKDev.git', :tag => "v#{spec.version}" }
+  s.requires_arc = true
 
-  spec.swift_version              = "5.0"
-  spec.ios.deployment_target      = "10.0"
+  s.vendored_frameworks =  "lib/MobileRTC.xcframework", "lib/MobileRTCScreenShare.xcframework"
+  s.resource = 'lib/MobileRTCResources.bundle'
 
-  spec.source       = { :git => "https://github.com/qbao249/ZoomSDKDev.git", :tag => "v#{spec.version}" }
+  s.libraries = "sqlite3", "z.1.2.5", "c++"
+  s.weak_framework = 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'CoreGraphics', 'ReplayKit'
 
-  # spec.libraries = "z", "c++", "sqlite3"
-  # spec.frameworks = "Foundation", "UIKit", "VideoToolbox", "CoreBluetooth", "ReplayKit", "CoreMotion"
-
-  spec.requires_arc = true
-
-  # spec.vendored_frameworks =  "sdk/lib/MobileRTC.xcframework", "sdk/lib/MobileRTCScreenShare.xcframework"
-  # spec.resource = '**/sdk/lib/MobileRTCResources.bundle'
-
-  spec.libraries = "sqlite3", "z.1.2.5", "c++"
-  spec.weak_framework = 'VideoToolbox', 'CoreMedia', 'CoreVideo', 'CoreGraphics', 'ReplayKit'
-
-  spec.pod_target_xcconfig = {
+  s.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }
+#   s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
-  spec.default_subspec = 'Core'
-
-  spec.subspec 'Core' do |subspec|
-    # subspec.ios.source_files           = "MobileRTC.framework/Headers/**/*.{h,m}"
-    # subspec.ios.public_header_files    = "MobileRTC.framework/Headers/**/*.{h,m}"
-    subspec.ios.vendored_frameworks    = "sdk/lib/MobileRTC.xcframework", "sdk/lib/MobileRTCScreenShare.xcframework"
-    subspec.ios.resource = "sdk/lib/MobileRTCResources.bundle"
-  end
-
-  # spec.subspec 'Core' do |subspec|
-  #   subspec.ios.source_files           = "MobileRTC.framework/Headers/**/*.{h,m}"
-  #   subspec.ios.public_header_files    = "MobileRTC.framework/Headers/**/*.{h,m}"
-  #   subspec.ios.vendored_frameworks    = "MobileRTC.framework"
-  #   subspec.ios.resource = "MobileRTCResources.bundle"
-  # end
-
-  # Uncomment when this library will be support Swift 5 or higher
-  # spec.subspec 'ShareScreen' do |subspec|
-  #   subspec.ios.dependency 'Core'
-
-  #   subspec.ios.source_files            = "MobileRTCScreenShare.framework/Headers/**/*.{h,m}"
-  #   subspec.ios.public_header_files     = "MobileRTCScreenShare.framework/Headers/**/*.{h,m}"
-  #   subspec.ios.vendored_frameworks     = "MobileRTCScreenShare.framework"
-  # end
-
-  # spec.requires_arc = true
-
-  # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # spec.dependency "JSONKit", "~> 1.4"
-
+  s.license      =  { :type => 'MIT', :text => <<-LICENSE
+ MIT License
+ Copyright (c) 2021 zvs001
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+    LICENSE
+  }
 end
